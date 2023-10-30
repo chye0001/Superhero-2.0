@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6748e211-b6e2-4101-af2b-8046658c38a0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Superhero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UserInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/DatabaseTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="6748e211-b6e2-4101-af2b-8046658c38a0" name="Changes" comment="Added: refactored original Superhero, added controller." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +54,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseTest">
+  <component name="RunManager">
     <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Superhero2.0" />
       <option name="PACKAGE_NAME" value="" />
@@ -139,12 +127,34 @@
       <workItem from="1695218593114" duration="2228000" />
       <workItem from="1698590717701" duration="214000" />
       <workItem from="1698591014538" duration="25000" />
-      <workItem from="1698591147141" duration="13342000" />
+      <workItem from="1698591147141" duration="13727000" />
     </task>
+    <task id="LOCAL-00001" summary="Added: refactored Superhero, added controller.">
+      <option name="closed" value="true" />
+      <created>1698690863331</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698690863331</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added: refactored original Superhero, added controller.">
+      <option name="closed" value="true" />
+      <created>1698691056090</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698691056090</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added: refactored Superhero, added controller." />
+    <MESSAGE value="Added: refactored original Superhero, added controller." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added: refactored original Superhero, added controller." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Superhero2_0$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1695202485782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
