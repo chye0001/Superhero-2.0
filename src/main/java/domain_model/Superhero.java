@@ -1,3 +1,5 @@
+package domain_model;
+
 public class Superhero {
 
     private String name;

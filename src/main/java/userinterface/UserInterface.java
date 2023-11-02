@@ -1,19 +1,21 @@
+package userinterface;
+import domain_model.Controller;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
 
     private Scanner sc = new Scanner(System.in);
-    private int choice;
-    private Database Database = new Database();
     Controller controller = new Controller();
 
     public UserInterface() {
     }
 
     public void startProgram() {
+        int choice;
 
-        System.out.println("Welcome to the Superhero Universe!");
+        System.out.println("Welcome to the domain_model.Superhero Universe!");
 
         do {
             System.out.print("\n1. Create superhero\n2. See list of superheros\n3. Search for a superhero \n4. Edit list of superheros\n5. Delete a superhero\n6. End program\nChoose: ");
@@ -64,7 +66,7 @@ public class UserInterface {
         while (!sc.hasNextInt()) {
             System.out.print("You must enter a number: ");
             //Linjen efter skal være af sc.next(); metoden, da denne metode tager alle former for input.
-            //hvis det var sc.nextInt(); ville programmet crashe, hvis man inputer andet end integers, da denne scanner ikke kan indlæse andet end integer.
+            //Hvis det var sc.nextInt(); ville programmet crashe, hvis man inputer andet end integers, da denne scanner ikke kan indlæse andet end integer.
             sc.next();
         }
         int yearCreated = sc.nextInt();

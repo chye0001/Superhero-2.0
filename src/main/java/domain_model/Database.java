@@ -1,19 +1,31 @@
+package domain_model;
+import datasource.FileHandler;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Database {
 
-    private final ArrayList<Superhero> superheroList = new ArrayList<>(2);
+    private ArrayList<Superhero> superheroList;
     private final Scanner sc = new Scanner(System.in);
+    private FileHandler fileHandler = new FileHandler();
 
     //public Database(){}
 
     //Midlertidig hardkodet superhelte så jeg ikke konstant skal oprette nye superheros når jeg vil teste koden.
+    /*
     public Database() {
         Superhero ironMan = new Superhero("Iron Man", "Tony Stark", "Has big brain", 2005, true, 800);
         Superhero captainAmerica = new Superhero("Captain America", "Steve Rogers", "Superhuman Strength", 1941, true, 999);
         superheroList.add(ironMan);
         superheroList.add(captainAmerica);
+    }
+    */
+    public Database() {
+        try {
+            this.superheroList = fileHandler.loadListOfSuperhero();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -22,7 +34,7 @@ public class Database {
         return superheroList.size();
     }
 
-    //Denne metode anvendes til at få fat i listen med superhelte i klassen UserInterface, og anvendes til at printe "fejlmeddeles", hvis listen er tom.
+    //Denne metode anvendes til at få fat i listen med superhelte i klassen userinterface.UserInterface, og anvendes til at printe "fejlmeddeles", hvis listen er tom.
     public ArrayList<Superhero> getSuperheroList() {
         return superheroList;
     }
@@ -54,12 +66,20 @@ public class Database {
         StringBuilder sb = new StringBuilder();
 
         for (Superhero superhero : superheroList) {
-            sb.append(count++ + ": " + superhero.getName() + ", " +
-                    superhero.getRealName() + ", " +
-                    superhero.getSuperpower() + ", " +
-                    superhero.getYearCreated() + ", " +
-                    superhero.getIsHuman() + ", " +
-                    superhero.getStrength() + "\n");
+            sb.append(count++)
+              .append(": ")
+              .append(superhero.getName())
+              .append(", ")
+              .append(superhero.getRealName())
+              .append(", ")
+              .append(superhero.getSuperpower())
+              .append(", ")
+              .append(superhero.getYearCreated())
+              .append(", ")
+              .append(superhero.getIsHuman())
+              .append(", ")
+              .append(superhero.getStrength())
+              .append("\n");
         }
         return sb.toString();
     }
@@ -135,7 +155,7 @@ public class Database {
     public String toString() {
         StringBuilder list = new StringBuilder();
         for (Superhero superhero : superheroList) {
-            list.append("Superhero" + "\nName: ").append(superhero.getName())
+            list.append("domain_model.Superhero" + "\nName: ").append(superhero.getName())
                     .append("\nReal name: ").append(superhero.getRealName())
                     .append("\nSuperpower: ").append(superhero.getSuperpower())
                     .append("\nYear created: ").append(superhero.getYearCreated())

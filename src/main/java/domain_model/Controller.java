@@ -1,8 +1,9 @@
+package domain_model;
+import datasource.FileHandler;
 import java.util.ArrayList;
 
 public class Controller {
 
-    Superhero superhero = new Superhero();
     Database database = new Database();
 
     public Controller() {
@@ -13,7 +14,7 @@ public class Controller {
         database.addSuperhero(name, realName, superPower, yearCreated, isHuman, strength);
     }
 
-    public String listOfSuperheros(){
+    public String listOfSuperheros() {
         return database.listOfSuperhero();
     }
 
