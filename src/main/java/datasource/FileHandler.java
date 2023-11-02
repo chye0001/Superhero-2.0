@@ -38,7 +38,7 @@ public class FileHandler {
                     attributter[2].trim(),
                     Integer.parseInt(attributter[3].trim()),
                     Boolean.parseBoolean(attributter[4].trim()),
-                    Integer.parseInt(attributter[5].trim()));
+                    Double.parseDouble(attributter[5].trim()));
 
             LOADED_FILE.add(superheroToAdd);
         }

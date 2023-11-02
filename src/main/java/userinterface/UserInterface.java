@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
     Controller controller = new Controller();
 
     public UserInterface() {
@@ -53,7 +53,7 @@ public class UserInterface {
 
     public void createSuperhero() {
         System.out.print("Add name: ");
-        String x = sc.nextLine();
+        sc.nextLine();
         String name = sc.nextLine();
 
         System.out.print("Add real name: ");
@@ -85,7 +85,11 @@ public class UserInterface {
         }
         double strength = sc.nextDouble();
 
-        controller.createSuperhero(name, realName, superPower, yearCreated, isHuman, strength);
+        try {
+            controller.createSuperhero(name, realName, superPower, yearCreated, isHuman, strength);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         System.out.println("Superhero added to list, would you like to create a new superhero?");
     }
@@ -100,7 +104,7 @@ public class UserInterface {
 
     public void searchSuperhero() {
         System.out.print("Input search: ");
-        String q = sc.next();
+        sc.nextLine();
         String search = sc.nextLine();
 
         if (controller.searchSuperhero(search) == null) {
@@ -135,7 +139,7 @@ public class UserInterface {
         System.out.println("\nEdit data and press enter. If you do not wish to edit, just press enter to continue.\n");
 
         System.out.println("Name: " + chosenSuperheroToEdit.get(0));
-        String x = sc.nextLine();
+        sc.nextLine();
         String newName = sc.nextLine();
 
         System.out.println("Real name: " + chosenSuperheroToEdit.get(1));
@@ -153,10 +157,14 @@ public class UserInterface {
         System.out.println("Strength: " + chosenSuperheroToEdit.get(5));
         String newStrength = sc.nextLine();
 
-        if (controller.editSuperheroList(newName, newRealName, newSuperpower, newYearCreated, newIsHuman, newStrength, userChoise)) {
-            System.out.println("The chosen superhero has been edited!\n");
+       try {
+           if (controller.editSuperheroList(newName, newRealName, newSuperpower, newYearCreated, newIsHuman, newStrength, userChoise)) {
+               System.out.println("The chosen superhero has been edited!\n");
 
-        } else System.out.println("No edits has been performed.");
+           } else System.out.println("No edits has been performed.");
+       } catch (Exception e){
+           e.printStackTrace();
+       }
         System.out.println("Would you like to edit the list again?");
     }
 
@@ -184,8 +192,14 @@ public class UserInterface {
          */
 
         int userChoice = sc.nextInt();
-        String output = controller.deleteSuperhero(userChoice);
-        System.out.println(output);
+        try {
+            String output = controller.deleteSuperhero(userChoice);
+            System.out.println(output);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void endProgram() {

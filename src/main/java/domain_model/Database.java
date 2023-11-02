@@ -1,5 +1,7 @@
 package domain_model;
 import datasource.FileHandler;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,22 +9,11 @@ public class Database {
 
     private ArrayList<Superhero> superheroList;
     private final Scanner sc = new Scanner(System.in);
-    private FileHandler fileHandler = new FileHandler();
+    private final FileHandler FILE_HANDLER = new FileHandler();
 
-    //public Database(){}
-
-    //Midlertidig hardkodet superhelte så jeg ikke konstant skal oprette nye superheros når jeg vil teste koden.
-    /*
-    public Database() {
-        Superhero ironMan = new Superhero("Iron Man", "Tony Stark", "Has big brain", 2005, true, 800);
-        Superhero captainAmerica = new Superhero("Captain America", "Steve Rogers", "Superhuman Strength", 1941, true, 999);
-        superheroList.add(ironMan);
-        superheroList.add(captainAmerica);
-    }
-    */
     public Database() {
         try {
-            this.superheroList = fileHandler.loadListOfSuperhero();
+            this.superheroList = FILE_HANDLER.loadListOfSuperhero();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -34,7 +25,7 @@ public class Database {
         return superheroList.size();
     }
 
-    //Denne metode anvendes til at få fat i listen med superhelte i klassen userinterface.UserInterface, og anvendes til at printe "fejlmeddeles", hvis listen er tom.
+    //Denne metode anvendes til at få fat i listen med superhelte i klassen UserInterface. UserInterface, og anvendes til at printe "fejlmeddeles", hvis listen er tom.
     public ArrayList<Superhero> getSuperheroList() {
         return superheroList;
     }
@@ -56,9 +47,11 @@ public class Database {
 
     //Service-methods
     public void addSuperhero(String name, String realName, String superPower,
-                             int yearCreated, Boolean isHuman, double strength) {
+                             int yearCreated, Boolean isHuman, double strength) throws FileNotFoundException {
         Superhero newSuperhero = new Superhero(name, realName, superPower, yearCreated, isHuman, strength);
+
         superheroList.add(newSuperhero);
+        FILE_HANDLER.saveSuperhero(superheroList);
     }
 
     public String listOfSuperhero() {
@@ -100,7 +93,14 @@ public class Database {
             return searchResults;
     }
 
-    public boolean editSuperheroList(String newName, String newRealName, String newSuperpower, String newYearCreated, String newIsHuman, String newStrength, int userChoise) {
+    public boolean editSuperheroList(String newName,
+                                     String newRealName,
+                                     String newSuperpower,
+                                     String newYearCreated,
+                                     String newIsHuman,
+                                     String newStrength,
+                                     int userChoise) throws FileNotFoundException{
+
         Superhero chosenSuperheroToEdit = superheroList.get(userChoise - 1);
 
         if (!newName.isEmpty()) {
@@ -119,23 +119,29 @@ public class Database {
             chosenSuperheroToEdit.setIsHuman(Boolean.parseBoolean(newIsHuman));
         }
         if (!newStrength.isEmpty()) {
-            chosenSuperheroToEdit.setStrength(Integer.parseInt(newStrength));
+            chosenSuperheroToEdit.setStrength(Double.parseDouble(newStrength));
         }
+
+
         if (!newName.isEmpty() || !newRealName.isEmpty() ||
                 !newSuperpower.isEmpty() || !newYearCreated.isEmpty() ||
                 !newIsHuman.isEmpty() || !newStrength.isEmpty()) {
+
+            FILE_HANDLER.saveSuperhero(superheroList);
+
             return true;
         } else {
             return false;
         }
     }
 
-    public String deleteSuperhero(int userChoice) {
+    public String deleteSuperhero(int userChoice) throws FileNotFoundException{
         if (userChoice == 0) {
             return "No superheros were deleted";
 
         } else if (userChoice > 0 && userChoice <= superheroList.size()) {
             superheroList.remove(userChoice - 1);
+            FILE_HANDLER.saveSuperhero(superheroList);
             return "\nThe superhero was deleted from your superhero list.";
 
         } else {
@@ -148,6 +154,8 @@ public class Database {
 
             }
             superheroList.remove(userChoice - 1);
+            FILE_HANDLER.saveSuperhero(superheroList);
+
             return "\nThe superhero was deleted from your superhero list.\nWould you like to delete another superhero?";
         }
     }

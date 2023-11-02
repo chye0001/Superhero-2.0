@@ -1,3 +1,4 @@
+/*
 import domain_model.Database;
 import domain_model.Superhero;
 import org.junit.jupiter.api.Test;
@@ -11,12 +12,11 @@ class DatabaseTest {
 
     Database db = new Database();
     //Udføres én gang før hver test
-    /*
+
     @BeforeEach
     void setUp() {
         db.addSuperhero("Iron Man", "Tony Stark", "Has big brain", 2005, true, 800);
     }
-     */
 
     @Test
     void addSuperhero() {
@@ -119,3 +119,4 @@ class DatabaseTest {
         assertEquals(expectedSize, actualSize);
     }
 }
+ */

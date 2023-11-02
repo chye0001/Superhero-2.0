@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6748e211-b6e2-4101-af2b-8046658c38a0" name="Changes" comment="Added: refactored original Superhero, added controller.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/FileHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/superheroDatabase.csv" afterDir="false" />
+    <list default="true" id="6748e211-b6e2-4101-af2b-8046658c38a0" name="Changes" comment="Added: UserStory #10 - printing to csv implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Superhero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Superhero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/FileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Superhero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Superhero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DatabaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/superheroDatabase.csv" beforeDir="false" afterPath="$PROJECT_DIR$/superheroDatabase.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +153,8 @@
       <workItem from="1698591147141" duration="15055000" />
       <workItem from="1698755347245" duration="641000" />
       <workItem from="1698824094223" duration="6379000" />
-      <workItem from="1698921078662" duration="437000" />
+      <workItem from="1698921078662" duration="1560000" />
+      <workItem from="1698938853263" duration="1181000" />
     </task>
     <task id="LOCAL-00001" summary="Added: refactored Superhero, added controller.">
       <option name="closed" value="true" />
@@ -180,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698691084442</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added: UserStory #10,5 - reading from csv implemented">
+      <option name="closed" value="true" />
+      <created>1698938205618</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698938205618</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +197,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added: refactored Superhero, added controller." />
     <MESSAGE value="Added: refactored original Superhero, added controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added: refactored original Superhero, added controller." />
+    <MESSAGE value="Added: UserStory #10,5 - reading from csv implemented" />
+    <MESSAGE value="Added: UserStory #10 - printing to csv implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added: UserStory #10 - printing to csv implemented" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Superhero2_0$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1695202485782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

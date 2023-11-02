@@ -1,5 +1,5 @@
 package domain_model;
-import datasource.FileHandler;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Controller {
@@ -10,7 +10,7 @@ public class Controller {
     }
 
     public void createSuperhero(String name, String realName, String superPower,
-                                int yearCreated, Boolean isHuman, double strength) {
+                                int yearCreated, Boolean isHuman, double strength) throws FileNotFoundException {
         database.addSuperhero(name, realName, superPower, yearCreated, isHuman, strength);
     }
 
@@ -22,11 +22,17 @@ public class Controller {
         return database.searchSuperhero(search);
     }
 
-    public boolean editSuperheroList(String newName, String newRealName, String newSuperpower, String newYearCreated, String newIsHuman, String newStrength, int userChoise){
+    public boolean editSuperheroList(String newName,
+                                     String newRealName,
+                                     String newSuperpower,
+                                     String newYearCreated,
+                                     String newIsHuman,
+                                     String newStrength,
+                                     int userChoise) throws FileNotFoundException{
         return database.editSuperheroList(newName, newRealName, newSuperpower, newYearCreated, newIsHuman, newStrength, userChoise);
     }
 
-    public String deleteSuperhero(int userChoise) {
+    public String deleteSuperhero(int userChoise) throws FileNotFoundException {
         return database.deleteSuperhero(userChoise);
     }
 

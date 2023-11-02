@@ -18,7 +18,6 @@ public class Superhero {
         this.isHuman = isHuman;
         this.strength = strength;
     }
-    public Superhero(){}
 
     public String getName(){
         return name;
@@ -58,7 +57,7 @@ public class Superhero {
     public double getStrength(){
         return strength;
     }
-    public void setStrength(int newStrength){
+    public void setStrength(double newStrength){
         this.strength = newStrength;
     }
 
