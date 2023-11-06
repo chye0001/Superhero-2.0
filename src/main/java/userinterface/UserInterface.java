@@ -2,6 +2,7 @@ package userinterface;
 import domain_model.Controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -18,7 +19,14 @@ public class UserInterface {
         System.out.println("Welcome to the Superhero Universe!");
 
         do {
-            System.out.print("\n1. Create superhero\n2. See list of superheros\n3. Search for a superhero \n4. Edit list of superheros\n5. Delete a superhero\n6. End program\nChoose: ");
+            System.out.print("\n1. Create superhero" +
+                    "\n2. See list of superheros" +
+                    "\n3. Search for a superhero " +
+                    "\n4. Edit list of superheros" +
+                    "\n5. Delete a superhero" +
+                    "\n6. Sort superhero list" +
+                    "\n7. End program" +
+                    "\nChoose: ");
 
             while (!sc.hasNextInt()) {
                 System.out.print("You must enter a number: ");
@@ -206,17 +214,32 @@ public class UserInterface {
     }
 
     public void sortSuperheroList(){
-        System.out.print("What attribute would you like to sort by?" +
-                "\n1. Superhero name" +
-                "\n2. Real name" +
-                "\n3. Superpower" +
-                "\n4. Year created" +
-                "\n5. Is human" +
-                "\n6. Strength" +
-                "\nChoise: ");
-        String choise = sc.nextLine();
+        ArrayList<String> attributtesToSortBy = new ArrayList<>(List.of("\n1. Superhero name",
+                "\n2. Real name",
+                "\n3. Superpower",
+                "\n4. Year created",
+                "\n5. Is human",
+                "\n6. Strength"));
 
-        controller.sortSuperheroList(choise);
+        System.out.println("What attribute would you like to sort by?");
+        StringBuilder sb1 = new StringBuilder();
+        for (String attributes : attributtesToSortBy) {
+            sb1.append(attributes);
+        }
+        System.out.print(sb1 + "\nPrimary attributes: ");
+        int primaryChoise = sc.nextInt();
+        attributtesToSortBy.remove(primaryChoise-1);
+
+        StringBuilder sb2 = new StringBuilder();
+        for (String attributes : attributtesToSortBy) {
+            sb2.append(attributes);
+        }
+
+        System.out.print(sb2 + "\nSecondary attributes: ");
+        int secondaryChoise = sc.nextInt();
+
+        String cornformationMessage = controller.sortSuperheroList(primaryChoise, secondaryChoise);
+        System.out.println(cornformationMessage);
     }
 
     public void endProgram() {

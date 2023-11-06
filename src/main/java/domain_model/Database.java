@@ -179,8 +179,8 @@ public class Database {
         }
     }
 
-    public void sortSuperheroList(String choise1){
-        /*
+    public String sortSuperheroList(int choise1, int choise2){
+
         NameComparator nameComparator = new NameComparator();
         RealNameComparator realNameComparator = new RealNameComparator();
         SuperPowerComparator superPowerComparator = new SuperPowerComparator();
@@ -188,8 +188,46 @@ public class Database {
         IsHumanComparator isHumanComparator = new IsHumanComparator();
         StrengthComparator strengthComparator = new StrengthComparator();
 
-         */
+        if (choise1 == 1){
+            Collections.sort(superheroList, nameComparator);
 
+        } else if (choise1 == 2) {
+            Collections.sort(superheroList, realNameComparator);
+
+        } else if (choise1 == 3) {
+            Collections.sort(superheroList, superPowerComparator);
+
+        } else if (choise1 == 4) {
+            Collections.sort(superheroList, yearCreatedComparator);
+
+        } else if (choise1 == 5) {
+            Collections.sort(superheroList, isHumanComparator);
+
+        } else if (choise1 == 6) {
+            Collections.sort(superheroList, strengthComparator.reversed());
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        int count = 1;
+        for (Superhero superhero : superheroList) {
+            sb.append(count++)
+                    .append(": ")
+                    .append(superhero.getName())
+                    .append(", ")
+                    .append(superhero.getRealName())
+                    .append(", ")
+                    .append(superhero.getSuperpower())
+                    .append(", ")
+                    .append(superhero.getYearCreated())
+                    .append(", ")
+                    .append(superhero.getIsHuman())
+                    .append(", ")
+                    .append(superhero.getStrength())
+                    .append("\n");
+        }
+        return "\nList has been sorted\n" + sb;
     }
 
     public String toString() {

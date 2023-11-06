@@ -36,8 +36,8 @@ public class Controller {
         return database.deleteSuperhero(userChoise);
     }
 
-    public void sortSuperheroList(String choise) {
-        database.sortSuperheroList(choise);
+    public String sortSuperheroList(int choise1, int choise2) {
+       return database.sortSuperheroList(choise1, choise2);
     }
 
     public ArrayList<Object> getChosenSuperheroToEdit(int userChoise) {
