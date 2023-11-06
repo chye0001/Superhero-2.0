@@ -19,14 +19,16 @@ public class UserInterface {
         System.out.println("Welcome to the Superhero Universe!");
 
         do {
-            System.out.print("\n1. Create superhero" +
-                    "\n2. See list of superheros" +
-                    "\n3. Search for a superhero " +
-                    "\n4. Edit list of superheros" +
-                    "\n5. Delete a superhero" +
-                    "\n6. Sort superhero list" +
-                    "\n7. End program" +
-                    "\nChoose: ");
+            System.out.print("""
+
+                    1. Create superhero
+                    2. See list of superheros
+                    3. Search for a superhero\s
+                    4. Edit list of superheros
+                    5. Delete a superhero
+                    6. Sort superhero list
+                    7. End program
+                    Choose:\s""");
 
             while (!sc.hasNextInt()) {
                 System.out.print("You must enter a number: ");
@@ -174,7 +176,8 @@ public class UserInterface {
 
            } else System.out.println("No edits has been performed.");
        } catch (Exception e){
-           e.printStackTrace();
+           System.out.println("File does not exist");
+
        }
         System.out.println("Would you like to edit the list again?");
     }
@@ -208,38 +211,45 @@ public class UserInterface {
             System.out.println(output);
 
         } catch (Exception e){
-            e.printStackTrace();
+            System.out.println("File does not exist");
         }
 
     }
 
     public void sortSuperheroList(){
-        ArrayList<String> attributtesToSortBy = new ArrayList<>(List.of("\n1. Superhero name",
+        ArrayList<String> attributesToSortBy = new ArrayList<>(List.of("\n1. Superhero name",
                 "\n2. Real name",
                 "\n3. Superpower",
                 "\n4. Year created",
                 "\n5. Is human",
                 "\n6. Strength"));
 
-        System.out.println("What attribute would you like to sort by?");
+        System.out.println("What attribute would you like to sort by? If you want to cancel press 0 then enter");
         StringBuilder sb1 = new StringBuilder();
-        for (String attributes : attributtesToSortBy) {
+        for (String attributes : attributesToSortBy) {
             sb1.append(attributes);
         }
         System.out.print(sb1 + "\nPrimary attributes: ");
         int primaryChoise = sc.nextInt();
-        attributtesToSortBy.remove(primaryChoise-1);
+        if (primaryChoise == 0){
+            return;
+        }
+        attributesToSortBy.remove(primaryChoise-1);
 
         StringBuilder sb2 = new StringBuilder();
-        for (String attributes : attributtesToSortBy) {
+        for (String attributes : attributesToSortBy) {
             sb2.append(attributes);
         }
-
         System.out.print(sb2 + "\nSecondary attributes: ");
         int secondaryChoise = sc.nextInt();
 
-        String cornformationMessage = controller.sortSuperheroList(primaryChoise, secondaryChoise);
-        System.out.println(cornformationMessage);
+        String confirmationMessage = controller.sortSuperheroList(primaryChoise, secondaryChoise);
+        if (confirmationMessage.equalsIgnoreCase("null")){
+            System.out.println("\nYou have chosen outside of the scope, please try again and choose from the menu");
+            sortSuperheroList();
+
+        } else
+            System.out.println(confirmationMessage);
     }
 
     public void endProgram() {

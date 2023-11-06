@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Database {
@@ -13,7 +14,7 @@ public class Database {
     private ArrayList<Superhero> superheroList;
     private final Scanner sc = new Scanner(System.in);
     private final FileHandler FILE_HANDLER = new FileHandler();
-    private File CSVFile = new File("superheroDatabase.csv");
+    private final File CSVFile = new File("superheroDatabase.csv");
 
     public Database() {
         try {
@@ -179,55 +180,75 @@ public class Database {
         }
     }
 
+    public Comparator primaryComparator(int primaryChoise){
+        switch (primaryChoise) {
+            case 1 -> {return new NameComparator();}
+            case 2 -> {return new RealNameComparator();}
+            case 3 -> {return new SuperPowerComparator();}
+            case 4 -> {return new YearCreatedComparator();}
+            case 5 -> {return new IsHumanComparator();}
+            case 6 -> {return new StrengthComparator();}
+            default -> {return null;}
+        }
+    }
+
+    public Comparator secondaryComparator(int secondaryChoise){
+        switch (secondaryChoise) {
+            case 1 -> {
+                return new NameComparator();
+            }
+            case 2 -> {
+                return new RealNameComparator();
+            }
+            case 3 -> {
+                return new SuperPowerComparator();
+            }
+            case 4 -> {
+                return new YearCreatedComparator();
+            }
+            case 5 -> {
+                return new IsHumanComparator();
+            }
+            case 6 -> {
+                return new StrengthComparator();
+            }
+            default -> {
+                return null;
+            }
+        }
+    }
+
     public String sortSuperheroList(int choise1, int choise2){
 
-        NameComparator nameComparator = new NameComparator();
-        RealNameComparator realNameComparator = new RealNameComparator();
-        SuperPowerComparator superPowerComparator = new SuperPowerComparator();
-        YearCreatedComparator yearCreatedComparator = new YearCreatedComparator();
-        IsHumanComparator isHumanComparator = new IsHumanComparator();
-        StrengthComparator strengthComparator = new StrengthComparator();
+        Comparator primaryChoise = primaryComparator(choise1);
+        Comparator secondaryChoise = secondaryComparator(choise2);
 
-        if (choise1 == 1){
-            Collections.sort(superheroList, nameComparator);
+        if (primaryChoise == null || secondaryChoise == null){
+            return "null";
 
-        } else if (choise1 == 2) {
-            Collections.sort(superheroList, realNameComparator);
+        } else {
+            Collections.sort(superheroList, primaryChoise.thenComparing(secondaryChoise));
 
-        } else if (choise1 == 3) {
-            Collections.sort(superheroList, superPowerComparator);
-
-        } else if (choise1 == 4) {
-            Collections.sort(superheroList, yearCreatedComparator);
-
-        } else if (choise1 == 5) {
-            Collections.sort(superheroList, isHumanComparator);
-
-        } else if (choise1 == 6) {
-            Collections.sort(superheroList, strengthComparator.reversed());
-
+            StringBuilder sb = new StringBuilder();
+            int count = 1;
+            for (Superhero superhero : superheroList) {
+                sb.append(count++)
+                        .append(": ")
+                        .append(superhero.getName())
+                        .append(", ")
+                        .append(superhero.getRealName())
+                        .append(", ")
+                        .append(superhero.getSuperpower())
+                        .append(", ")
+                        .append(superhero.getYearCreated())
+                        .append(", ")
+                        .append(superhero.getIsHuman())
+                        .append(", ")
+                        .append(superhero.getStrength())
+                        .append("\n");
+            }
+            return "\nList has been sorted\n" + sb;
         }
-
-        StringBuilder sb = new StringBuilder();
-
-        int count = 1;
-        for (Superhero superhero : superheroList) {
-            sb.append(count++)
-                    .append(": ")
-                    .append(superhero.getName())
-                    .append(", ")
-                    .append(superhero.getRealName())
-                    .append(", ")
-                    .append(superhero.getSuperpower())
-                    .append(", ")
-                    .append(superhero.getYearCreated())
-                    .append(", ")
-                    .append(superhero.getIsHuman())
-                    .append(", ")
-                    .append(superhero.getStrength())
-                    .append("\n");
-        }
-        return "\nList has been sorted\n" + sb;
     }
 
     public String toString() {
