@@ -12,15 +12,15 @@ public class FileHandler {
     private final File CSVFile = new File("superheroDatabase.csv");
     private final ArrayList<Superhero> LOADED_FILE = new ArrayList<>();
 
-    public void saveSuperhero(ArrayList<Superhero> listOfHeroesToSave) throws FileNotFoundException {
-        PrintStream saveToFile = new PrintStream(CSVFile);
+    public void saveSuperhero(ArrayList<Superhero> listOfHeroesToSave, File fileToSaveto) throws FileNotFoundException {
+        PrintStream saveToFile = new PrintStream(fileToSaveto);
 
         for (Superhero hero : listOfHeroesToSave) {
-            saveToFile.println(hero.getName() + "," +
-                    hero.getRealName() + "," +
-                    hero.getSuperpower() + "," +
-                    hero.getYearCreated() + "," +
-                    hero.getIsHuman() + "," +
+            saveToFile.println(hero.getName() + ";" +
+                    hero.getRealName() + ";" +
+                    hero.getSuperpower() + ";" +
+                    hero.getYearCreated() + ";" +
+                    hero.getIsHuman() + ";" +
                     hero.getStrength());
         }
     }
@@ -30,7 +30,7 @@ public class FileHandler {
 
         while (loadFromFile.hasNext()) {
             String linje = loadFromFile.nextLine();
-            String[] attributter = linje.split(",");
+            String[] attributter = linje.split(";");
 
             Superhero superheroToAdd;
             superheroToAdd = new Superhero(attributter[0].trim(),

@@ -36,6 +36,10 @@ public class Controller {
         return database.deleteSuperhero(userChoise);
     }
 
+    public void sortSuperheroList(String choise) {
+        database.sortSuperheroList(choise);
+    }
+
     public ArrayList<Object> getChosenSuperheroToEdit(int userChoise) {
         return database.getChosenSuperheroToEdit(userChoise); //Hjælpe metode til deleteSuperhero()
     }

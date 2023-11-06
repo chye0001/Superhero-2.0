@@ -1,8 +1,11 @@
 package domain_model;
 import datasource.FileHandler;
+import domain_model.comparators.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Database {
@@ -10,6 +13,7 @@ public class Database {
     private ArrayList<Superhero> superheroList;
     private final Scanner sc = new Scanner(System.in);
     private final FileHandler FILE_HANDLER = new FileHandler();
+    private File CSVFile = new File("superheroDatabase.csv");
 
     public Database() {
         try {
@@ -19,11 +23,23 @@ public class Database {
         }
     }
 
-
     //Get-methods
+    public int getSize() {
+        try {
+            superheroList = FILE_HANDLER.loadListOfSuperhero();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return superheroList.size();
+    }
+
+    /* original getSize-metode.
     public int getSize() {
         return superheroList.size();
     }
+     */
+
 
     //Denne metode anvendes til at få fat i listen med superhelte i klassen UserInterface. UserInterface, og anvendes til at printe "fejlmeddeles", hvis listen er tom.
     public ArrayList<Superhero> getSuperheroList() {
@@ -51,10 +67,13 @@ public class Database {
         Superhero newSuperhero = new Superhero(name, realName, superPower, yearCreated, isHuman, strength);
 
         superheroList.add(newSuperhero);
-        FILE_HANDLER.saveSuperhero(superheroList);
+        FILE_HANDLER.saveSuperhero(superheroList, CSVFile);
     }
 
     public String listOfSuperhero() {
+
+        Collections.sort(superheroList, new NameComparator());
+
         int count = 1;
         StringBuilder sb = new StringBuilder();
 
@@ -77,7 +96,7 @@ public class Database {
         return sb.toString();
     }
 
-    public ArrayList<Superhero> searchSuperhero(String search) {
+    public ArrayList<Superhero> searchSuperhero(String search) { //TODO - fix search so that it works properly
         ArrayList<Superhero> searchResults = new ArrayList<>();
         for (Superhero superhero : superheroList) {
             if (superhero.getName().toLowerCase().contains(search.toLowerCase()) || superhero.getRealName().toLowerCase().contains(search.toLowerCase())) {
@@ -127,7 +146,7 @@ public class Database {
                 !newSuperpower.isEmpty() || !newYearCreated.isEmpty() ||
                 !newIsHuman.isEmpty() || !newStrength.isEmpty()) {
 
-            FILE_HANDLER.saveSuperhero(superheroList);
+            FILE_HANDLER.saveSuperhero(superheroList, CSVFile);
 
             return true;
         } else {
@@ -141,7 +160,7 @@ public class Database {
 
         } else if (userChoice > 0 && userChoice <= superheroList.size()) {
             superheroList.remove(userChoice - 1);
-            FILE_HANDLER.saveSuperhero(superheroList);
+            FILE_HANDLER.saveSuperhero(superheroList, CSVFile);
             return "\nThe superhero was deleted from your superhero list.";
 
         } else {
@@ -154,10 +173,23 @@ public class Database {
 
             }
             superheroList.remove(userChoice - 1);
-            FILE_HANDLER.saveSuperhero(superheroList);
+            FILE_HANDLER.saveSuperhero(superheroList, CSVFile);
 
             return "\nThe superhero was deleted from your superhero list.\nWould you like to delete another superhero?";
         }
+    }
+
+    public void sortSuperheroList(String choise1){
+        /*
+        NameComparator nameComparator = new NameComparator();
+        RealNameComparator realNameComparator = new RealNameComparator();
+        SuperPowerComparator superPowerComparator = new SuperPowerComparator();
+        YearCreatedComparator yearCreatedComparator = new YearCreatedComparator();
+        IsHumanComparator isHumanComparator = new IsHumanComparator();
+        StrengthComparator strengthComparator = new StrengthComparator();
+
+         */
+
     }
 
     public String toString() {

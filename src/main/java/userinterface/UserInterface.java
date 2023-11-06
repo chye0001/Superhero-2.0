@@ -15,7 +15,7 @@ public class UserInterface {
     public void startProgram() {
         int choice;
 
-        System.out.println("Welcome to the domain_model.Superhero Universe!");
+        System.out.println("Welcome to the Superhero Universe!");
 
         do {
             System.out.print("\n1. Create superhero\n2. See list of superheros\n3. Search for a superhero \n4. Edit list of superheros\n5. Delete a superhero\n6. End program\nChoose: ");
@@ -44,11 +44,14 @@ public class UserInterface {
                 deleteSuperhero();
 
             } else if (choice == 6) {
+                sortSuperheroList();
+
+            } else if (choice == 7) {
                 endProgram();
 
             } else
                 System.out.println("Choose a number from the menu");
-        } while (choice != 6);
+        } while (choice != 7);
     }
 
     public void createSuperhero() {
@@ -200,6 +203,20 @@ public class UserInterface {
             e.printStackTrace();
         }
 
+    }
+
+    public void sortSuperheroList(){
+        System.out.print("What attribute would you like to sort by?" +
+                "\n1. Superhero name" +
+                "\n2. Real name" +
+                "\n3. Superpower" +
+                "\n4. Year created" +
+                "\n5. Is human" +
+                "\n6. Strength" +
+                "\nChoise: ");
+        String choise = sc.nextLine();
+
+        controller.sortSuperheroList(choise);
     }
 
     public void endProgram() {

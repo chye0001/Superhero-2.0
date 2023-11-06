@@ -1,8 +1,10 @@
-/*
+import datasource.FileHandler;
 import domain_model.Database;
 import domain_model.Superhero;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +13,57 @@ import static org.junit.jupiter.api.Assertions.*;
 class DatabaseTest {
 
     Database db = new Database();
+    FileHandler fileHandler = new FileHandler();
+    ArrayList<Superhero> superheroes = new ArrayList<>();
+    File testCSVFile = new File("superheroDatabase.csv");
+/*
     //Udføres én gang før hver test
-
     @BeforeEach
     void setUp() {
-        db.addSuperhero("Iron Man", "Tony Stark", "Has big brain", 2005, true, 800);
+        Superhero ironMan = new Superhero("Iron Man", "Tony Stark", "Has big brain", 2005, true, 800);
+        superheroes.add(ironMan);
+
+        try {
+            fileHandler.saveSuperhero(superheroes);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+*/
+    @Test
+    void addSuperhero() {
+        //startSize er 0 da der ikke er persistet nongle superheros endnu.
+        //int startSize = 0;
+        Superhero captainAmerica = new Superhero("Captain America", "Steve Rogers", "Superhuman Strength", 1941, true, 999);
+        superheroes.add(captainAmerica);
+        try {
+            fileHandler.saveSuperhero(superheroes, testCSVFile);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //expectedSize bliver 1 efter vi har added captain america.
+        int expectedSize = 1;
+        int actualSize = db.getSize();
+
+        assertEquals(expectedSize, actualSize);
+
     }
 
     @Test
-    void addSuperhero() {
-        //startSize er 2 fordi der allerede er hardcoded 2 superheros.
-        //int startSize = 2;
-        db.addSuperhero("Captain America", "Steve Rogers", "Superhuman Strength", 1941, true, 999);
+    void addMultipleSuperheros() {
+        //startSize er 1 da der blev added 1 superheros, tidligere.
+        //int startSize = 1;
+        Superhero captainAmerica2 = new Superhero("Captain America2", "Steve Rogers2", "Superhuman Strength", 1941, true, 999);
+        Superhero karl = new Superhero("Karl", "KarlJones", "Fly", 2001, true, 12);
+        superheroes.add(captainAmerica2);
+        superheroes.add(karl);
+        try {
+            fileHandler.saveSuperhero(superheroes, testCSVFile);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        //expectedSize bliver 2 efter vi har added captain america.
         int expectedSize = 3;
         int actualSize = db.getSize();
 
@@ -32,28 +71,19 @@ class DatabaseTest {
     }
 
     @Test
-    void addMultipleSuperheros() {
-        //startSize er 2 fordi der allerede er hardcoded 2 superheros.
-        //int startSize = 2;
-        db.addSuperhero("Captain America", "Steve Rogers", "Superhuman Strength", 1941, true, 999);
-        db.addSuperhero("Karl", "KarlJones", "Fly", 2001, true, 12);
-
-        int expectedSize = 4;
-        int actualSize = db.getSize();
-
-        assertEquals(expectedSize, actualSize);
-    }
-
-    @Test
     void deleteSuperhero(){
-        //Der starter med at være 3 superhelte i databasen, fordi der allerede er hardcoded 2 superheros, og vi ligger en ekstra ind forneden:
-        db.addSuperhero("Karl", "KarlJones", "Fly", 2001, true, 12);
+        //Der starter med at være 3 superhelte i databasen, da vi tidligere har added 3 heros ialt:
 
         //bruger vælger at slette den første superhelt.
         int userChoice = 1;
         int expectedSize = 2;
 
-        db.deleteSuperhero(userChoice);
+        try {
+            db.deleteSuperhero(userChoice);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         int actualSize = db.getSize();
 
         assertEquals(expectedSize, actualSize);
@@ -61,12 +91,19 @@ class DatabaseTest {
 
     @Test
     void deleteMultipleSuperheros() {
-        db.addSuperhero("Karl", "KarlJones", "Fly", 2001, true, 12); //Befinder sig på index plads 1.
-        db.addSuperhero("Superman", "Clark Kent", "Superhuman strength, laser eyes, fly", 1958, false, 99999); //Index plads 2.
+        //Der er 3 superheros i databasen, da vi tilføjer en eksta efter at have fjernet en superhero tidligere.
 
-        int expectedSize = 2;
-        db.deleteSuperhero(3); // deletes Superman
-        db.deleteSuperhero(2); // deletes Karl
+        Superhero superman = new Superhero("Superman", "Clark Kent", "Superhuman strength, laser eyes, fly", 1958, false, 99999);
+        superheroes.add(superman);
+        try {
+            db.deleteSuperhero(0);
+            db.deleteSuperhero(1);
+            fileHandler.saveSuperhero(superheroes, testCSVFile);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        int expectedSize = 1;
         int actualSize = db.getSize();
 
         assertEquals(expectedSize, actualSize);
@@ -76,14 +113,19 @@ class DatabaseTest {
     void noSuperheroDeleted(){
 
         int userChoise = 0;
-        db.deleteSuperhero(userChoise);
+        try {
+            db.deleteSuperhero(userChoise);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        int expectedSize = 2;
+        int expectedSize = 1;
         int actualSize = db.getSize();
 
         assertEquals(expectedSize, actualSize);
     }
 
+    /*
     @Test
     void noSearchResultsReachedSuperhero() {
         int expectedSize = 0;
@@ -92,7 +134,7 @@ class DatabaseTest {
         int actualSize = 0;
 
         assertEquals(expectedSize, searchResult);
-        //TODO generel fejl med searchmetoden.
+        //TODO generel fejl med searchmetoden .
     }
 
     @Test
@@ -118,5 +160,8 @@ class DatabaseTest {
 
         assertEquals(expectedSize, actualSize);
     }
+
+     */
+
+
 }
- */

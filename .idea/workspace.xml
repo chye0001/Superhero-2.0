@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6748e211-b6e2-4101-af2b-8046658c38a0" name="Changes" comment="Added: UserStory #10 - printing to csv implemented">
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain_model/comparators/IsHumanComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain_model/comparators/NameComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain_model/comparators/RealNameComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain_model/comparators/StrengthComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain_model/comparators/SuperPowerComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain_model/comparators/YearCreatedComparator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Superhero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Superhero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DatabaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/superheroDatabase.csv" beforeDir="false" afterPath="$PROJECT_DIR$/superheroDatabase.csv" afterDir="false" />
@@ -54,21 +58,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/chris/OneDrive - Københavns Erhvervsakademi/Desktop/School/1. Semester 2023/JavaProjecter/Superhero2.0",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -87,11 +92,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest.addMultipleSuperheros" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseTest.addSuperhero" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Superhero2.0" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="DatabaseTest" />
-      <option name="METHOD_NAME" value="addMultipleSuperheros" />
+      <option name="METHOD_NAME" value="addSuperhero" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -129,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DatabaseTest.addSuperhero" />
         <item itemvalue="JUnit.DatabaseTest" />
         <item itemvalue="JUnit.DatabaseTest.noSearchResultsReachedSuperhero" />
         <item itemvalue="JUnit.DatabaseTest.deleteMultipleSuperheros" />
         <item itemvalue="JUnit.DatabaseTest.deleteSuperhero" />
-        <item itemvalue="JUnit.DatabaseTest.addMultipleSuperheros" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +159,8 @@
       <workItem from="1698755347245" duration="641000" />
       <workItem from="1698824094223" duration="6379000" />
       <workItem from="1698921078662" duration="1560000" />
-      <workItem from="1698938853263" duration="1181000" />
+      <workItem from="1698938853263" duration="3372000" />
+      <workItem from="1699273221405" duration="4233000" />
     </task>
     <task id="LOCAL-00001" summary="Added: refactored Superhero, added controller.">
       <option name="closed" value="true" />
@@ -188,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698938205618</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added: UserStory #10 - printing to csv implemented">
+      <option name="closed" value="true" />
+      <created>1698940155787</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698940155787</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
