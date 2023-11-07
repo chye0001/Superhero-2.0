@@ -25,8 +25,8 @@ public class FileHandler {
         }
     }
 
-    public ArrayList<Superhero> loadListOfSuperhero() throws FileNotFoundException {
-        Scanner loadFromFile = new Scanner(CSVFile);
+    public ArrayList<Superhero> loadListOfSuperhero(File fileToLoadFrom) throws FileNotFoundException {
+        Scanner loadFromFile = new Scanner(fileToLoadFrom);
 
         while (loadFromFile.hasNext()) {
             String linje = loadFromFile.nextLine();

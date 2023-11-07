@@ -1,4 +1,5 @@
 package userinterface;
+
 import domain_model.Controller;
 
 import java.util.ArrayList;
@@ -100,7 +101,7 @@ public class UserInterface {
 
         try {
             controller.createSuperhero(name, realName, superPower, yearCreated, isHuman, strength);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -170,15 +171,15 @@ public class UserInterface {
         System.out.println("Strength: " + chosenSuperheroToEdit.get(5));
         String newStrength = sc.nextLine();
 
-       try {
-           if (controller.editSuperheroList(newName, newRealName, newSuperpower, newYearCreated, newIsHuman, newStrength, userChoise)) {
-               System.out.println("The chosen superhero has been edited!\n");
+        try {
+            if (controller.editSuperheroList(newName, newRealName, newSuperpower, newYearCreated, newIsHuman, newStrength, userChoise)) {
+                System.out.println("The chosen superhero has been edited!\n");
 
-           } else System.out.println("No edits has been performed.");
-       } catch (Exception e){
-           System.out.println("File does not exist");
+            } else System.out.println("No edits has been performed.");
+        } catch (Exception e) {
+            System.out.println("File does not exist");
 
-       }
+        }
         System.out.println("Would you like to edit the list again?");
     }
 
@@ -210,13 +211,13 @@ public class UserInterface {
             String output = controller.deleteSuperhero(userChoice);
             System.out.println(output);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("File does not exist");
         }
 
     }
 
-    public void sortSuperheroList(){
+    public void sortSuperheroList() {
         ArrayList<String> attributesToSortBy = new ArrayList<>(List.of("\n1. Superhero name",
                 "\n2. Real name",
                 "\n3. Superpower",
@@ -231,10 +232,14 @@ public class UserInterface {
         }
         System.out.print(sb1 + "\nPrimary attributes: ");
         int primaryChoise = sc.nextInt();
-        if (primaryChoise == 0){
+        if (primaryChoise > attributesToSortBy.size() || (primaryChoise < 0)) {
+            System.out.println("\nYou have chosen outside of the scope, please try again and choose from the menu");
+            sortSuperheroList();
+        }
+        if (primaryChoise == 0) {
             return;
         }
-        attributesToSortBy.remove(primaryChoise-1);
+        attributesToSortBy.remove(primaryChoise - 1);
 
         StringBuilder sb2 = new StringBuilder();
         for (String attributes : attributesToSortBy) {
@@ -244,12 +249,15 @@ public class UserInterface {
         int secondaryChoise = sc.nextInt();
 
         String confirmationMessage = controller.sortSuperheroList(primaryChoise, secondaryChoise);
+        //This part could be redundant since a NullPointerException would never be thrown, since it is beening handled above.
         if (confirmationMessage.equalsIgnoreCase("null")){
             System.out.println("\nYou have chosen outside of the scope, please try again and choose from the menu");
             sortSuperheroList();
 
         } else
             System.out.println(confirmationMessage);
+
+        System.out.println(confirmationMessage);
     }
 
     public void endProgram() {

@@ -18,7 +18,7 @@ public class Database {
 
     public Database() {
         try {
-            this.superheroList = FILE_HANDLER.loadListOfSuperhero();
+            this.superheroList = FILE_HANDLER.loadListOfSuperhero(CSVFile);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -27,7 +27,7 @@ public class Database {
     //Get-methods
     public int getSize() {
         try {
-            superheroList = FILE_HANDLER.loadListOfSuperhero();
+            superheroList = FILE_HANDLER.loadListOfSuperhero(CSVFile);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -180,48 +180,23 @@ public class Database {
         }
     }
 
-    public Comparator primaryComparator(int primaryChoise){
-        switch (primaryChoise) {
+    public Comparator attributeComparator(int chosenComparator){
+        switch (chosenComparator) {
             case 1 -> {return new NameComparator();}
             case 2 -> {return new RealNameComparator();}
             case 3 -> {return new SuperPowerComparator();}
             case 4 -> {return new YearCreatedComparator();}
             case 5 -> {return new IsHumanComparator();}
             case 6 -> {return new StrengthComparator();}
-            default -> {return null;}
-        }
-    }
-
-    public Comparator secondaryComparator(int secondaryChoise){
-        switch (secondaryChoise) {
-            case 1 -> {
-                return new NameComparator();
-            }
-            case 2 -> {
-                return new RealNameComparator();
-            }
-            case 3 -> {
-                return new SuperPowerComparator();
-            }
-            case 4 -> {
-                return new YearCreatedComparator();
-            }
-            case 5 -> {
-                return new IsHumanComparator();
-            }
-            case 6 -> {
-                return new StrengthComparator();
-            }
-            default -> {
-                return null;
-            }
+            default -> {return null;} // null would never be returned, since user can never choose outside the scope of the menu.
+                                      // it is beeing handled in userinterface.
         }
     }
 
     public String sortSuperheroList(int choise1, int choise2){
 
-        Comparator primaryChoise = primaryComparator(choise1);
-        Comparator secondaryChoise = secondaryComparator(choise2);
+        Comparator primaryChoise = attributeComparator(choise1);
+        Comparator secondaryChoise = attributeComparator(choise2);
 
         if (primaryChoise == null || secondaryChoise == null){
             return "null";
