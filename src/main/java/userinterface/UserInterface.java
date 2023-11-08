@@ -111,9 +111,16 @@ public class UserInterface {
     public void listOfSuperheros() {
         if (controller.getSuperheroList().isEmpty()) {
             System.out.println("The database is empty");
-        } else
-            System.out.println(controller.listOfSuperheros());
-        System.out.println("Would you like to see the list again?");
+
+        } else {
+            try {
+                System.out.println(controller.listOfSuperheros());
+                System.out.println("Would you like to see the list again?");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
     public void searchSuperhero() {
@@ -135,7 +142,13 @@ public class UserInterface {
             return;
 
         } else if (!controller.getSuperheroList().isEmpty()) {
-            System.out.println(controller.listOfSuperheros());
+            try {
+                System.out.println(controller.listOfSuperheros());
+                System.out.println("Would you like to see the list again?");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
         System.out.print("Choose a superhero from the list to edit: ");
@@ -189,7 +202,13 @@ public class UserInterface {
             return;
 
         } else {
-            System.out.println(controller.listOfSuperheros());
+            try {
+                System.out.println(controller.listOfSuperheros());
+                System.out.println("Would you like to see the list again?");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         }
         System.out.print("\nWhich superhero do you wish to delete? If you regret this option press 0.\nChoice: ");
@@ -248,16 +267,16 @@ public class UserInterface {
         System.out.print(sb2 + "\nSecondary attributes: ");
         int secondaryChoise = sc.nextInt();
 
-        String confirmationMessage = controller.sortSuperheroList(primaryChoise, secondaryChoise);
-        //This part could be redundant since a NullPointerException would never be thrown, since it is beening handled above.
-        if (confirmationMessage.equalsIgnoreCase("null")){
+        //This part could be redundant since a NullPointerException would never be thrown, since it is handled above.
+        boolean hasBeenSorted = controller.sortSuperheroList(primaryChoise, secondaryChoise);
+        if (hasBeenSorted){
+            System.out.println("\nList has been sorted");
+            System.out.println(controller.sortedSuperheroList());
+
+        }else {
             System.out.println("\nYou have chosen outside of the scope, please try again and choose from the menu");
             sortSuperheroList();
-
-        } else
-            System.out.println(confirmationMessage);
-
-        System.out.println(confirmationMessage);
+        }
     }
 
     public void endProgram() {

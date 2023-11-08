@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-    private final File CSVFile = new File("superheroDatabase.csv");
     private final ArrayList<Superhero> LOADED_FILE = new ArrayList<>();
 
     public void saveSuperhero(ArrayList<Superhero> listOfHeroesToSave, File fileToSaveto) throws FileNotFoundException {
         PrintStream saveToFile = new PrintStream(fileToSaveto);
 
-        for (Superhero hero : listOfHeroesToSave) {
-            saveToFile.println(hero.getName() + ";" +
-                    hero.getRealName() + ";" +
-                    hero.getSuperpower() + ";" +
-                    hero.getYearCreated() + ";" +
-                    hero.getIsHuman() + ";" +
-                    hero.getStrength());
+        for (Superhero superhero : listOfHeroesToSave) {
+            saveToFile.println(superhero.getName() + ";" +
+                    superhero.getRealName() + ";" +
+                    superhero.getSuperpower() + ";" +
+                    superhero.getYearCreated() + ";" +
+                    superhero.getIsHuman() + ";" +
+                    superhero.getStrength());
         }
+
     }
 
     public ArrayList<Superhero> loadListOfSuperhero(File fileToLoadFrom) throws FileNotFoundException {
@@ -40,7 +40,9 @@ public class FileHandler {
                     Boolean.parseBoolean(attributter[4].trim()),
                     Double.parseDouble(attributter[5].trim()));
 
-            LOADED_FILE.add(superheroToAdd);
+            if (!LOADED_FILE.contains(superheroToAdd)){
+                LOADED_FILE.add(superheroToAdd);
+            }
         }
         loadFromFile.close();
         return LOADED_FILE;

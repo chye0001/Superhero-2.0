@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6748e211-b6e2-4101-af2b-8046658c38a0" name="Changes" comment="Added: UserStory #14 - user can sort by primary- and secondary attributes">
-      <change afterPath="$PROJECT_DIR$/TestDatabase.csv" afterDir="false" />
+    <list default="true" id="6748e211-b6e2-4101-af2b-8046658c38a0" name="Changes" comment="Added: UnitTest on addSuperhero method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestDatabase.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TestDatabase.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/FileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain_model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain_model/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DatabaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/superheroDatabase.csv" beforeDir="false" afterPath="$PROJECT_DIR$/superheroDatabase.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,8 +130,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatabaseTest.addSuperhero" />
         <item itemvalue="JUnit.DatabaseTest" />
+        <item itemvalue="JUnit.DatabaseTest.addSuperhero" />
         <item itemvalue="JUnit.DatabaseTest.noSearchResultsReachedSuperhero" />
         <item itemvalue="JUnit.DatabaseTest.deleteMultipleSuperheros" />
         <item itemvalue="JUnit.DatabaseTest.deleteSuperhero" />
@@ -154,7 +156,7 @@
       <workItem from="1698824094223" duration="6379000" />
       <workItem from="1698921078662" duration="1560000" />
       <workItem from="1698938853263" duration="3372000" />
-      <workItem from="1699273221405" duration="16343000" />
+      <workItem from="1699273221405" duration="29623000" />
     </task>
     <task id="LOCAL-00001" summary="Added: refactored Superhero, added controller.">
       <option name="closed" value="true" />
@@ -220,7 +222,23 @@
       <option name="project" value="LOCAL" />
       <updated>1699292790235</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added: Handling of input in sort and">
+      <option name="closed" value="true" />
+      <created>1699357672013</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699357672014</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added: UnitTest on addSuperhero method">
+      <option name="closed" value="true" />
+      <created>1699357743726</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699357743726</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +252,9 @@
     <MESSAGE value="Added: UserStory #12 - automaticly sorts superheros by name, when viewing list" />
     <MESSAGE value="Added: UserStory #13 - user can sort by attributes" />
     <MESSAGE value="Added: UserStory #14 - user can sort by primary- and secondary attributes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added: UserStory #14 - user can sort by primary- and secondary attributes" />
+    <MESSAGE value="Added: Handling of input in sort and" />
+    <MESSAGE value="Added: UnitTest on addSuperhero method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added: UnitTest on addSuperhero method" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Superhero2_0$DatabaseTest.ic" NAME="DatabaseTest Coverage Results" MODIFIED="1695202485782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

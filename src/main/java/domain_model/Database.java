@@ -1,4 +1,5 @@
 package domain_model;
+
 import datasource.FileHandler;
 import domain_model.comparators.*;
 
@@ -17,30 +18,21 @@ public class Database {
     private final File CSVFile = new File("superheroDatabase.csv");
 
     public Database() {
+        this.superheroList = new ArrayList<>();
+    }
+
+    public void loadDatabase() {
         try {
-            this.superheroList = FILE_HANDLER.loadListOfSuperhero(CSVFile);
-        }catch (Exception e){
+            superheroList = FILE_HANDLER.loadListOfSuperhero(CSVFile);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     //Get-methods
     public int getSize() {
-        try {
-            superheroList = FILE_HANDLER.loadListOfSuperhero(CSVFile);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
         return superheroList.size();
     }
-
-    /* original getSize-metode.
-    public int getSize() {
-        return superheroList.size();
-    }
-     */
-
 
     //Denne metode anvendes til at få fat i listen med superhelte i klassen UserInterface. UserInterface, og anvendes til at printe "fejlmeddeles", hvis listen er tom.
     public ArrayList<Superhero> getSuperheroList() {
@@ -80,19 +72,19 @@ public class Database {
 
         for (Superhero superhero : superheroList) {
             sb.append(count++)
-              .append(": ")
-              .append(superhero.getName())
-              .append(", ")
-              .append(superhero.getRealName())
-              .append(", ")
-              .append(superhero.getSuperpower())
-              .append(", ")
-              .append(superhero.getYearCreated())
-              .append(", ")
-              .append(superhero.getIsHuman())
-              .append(", ")
-              .append(superhero.getStrength())
-              .append("\n");
+                    .append(": ")
+                    .append(superhero.getName())
+                    .append(", ")
+                    .append(superhero.getRealName())
+                    .append(", ")
+                    .append(superhero.getSuperpower())
+                    .append(", ")
+                    .append(superhero.getYearCreated())
+                    .append(", ")
+                    .append(superhero.getIsHuman())
+                    .append(", ")
+                    .append(superhero.getStrength())
+                    .append("\n");
         }
         return sb.toString();
     }
@@ -119,7 +111,7 @@ public class Database {
                                      String newYearCreated,
                                      String newIsHuman,
                                      String newStrength,
-                                     int userChoise) throws FileNotFoundException{
+                                     int userChoise) throws FileNotFoundException {
 
         Superhero chosenSuperheroToEdit = superheroList.get(userChoise - 1);
 
@@ -155,7 +147,7 @@ public class Database {
         }
     }
 
-    public String deleteSuperhero(int userChoice) throws FileNotFoundException{
+    public String deleteSuperhero(int userChoice) throws FileNotFoundException {
         if (userChoice == 0) {
             return "No superheros were deleted";
 
@@ -180,49 +172,67 @@ public class Database {
         }
     }
 
-    public Comparator attributeComparator(int chosenComparator){
+    public Comparator attributeComparator(int chosenComparator) {
         switch (chosenComparator) {
-            case 1 -> {return new NameComparator();}
-            case 2 -> {return new RealNameComparator();}
-            case 3 -> {return new SuperPowerComparator();}
-            case 4 -> {return new YearCreatedComparator();}
-            case 5 -> {return new IsHumanComparator();}
-            case 6 -> {return new StrengthComparator();}
-            default -> {return null;} // null would never be returned, since user can never choose outside the scope of the menu.
-                                      // it is beeing handled in userinterface.
+            case 1 -> {
+                return new NameComparator();
+            }
+            case 2 -> {
+                return new RealNameComparator();
+            }
+            case 3 -> {
+                return new SuperPowerComparator();
+            }
+            case 4 -> {
+                return new YearCreatedComparator();
+            }
+            case 5 -> {
+                return new IsHumanComparator();
+            }
+            case 6 -> {
+                return new StrengthComparator();
+            }
+            default -> {
+                return null;
+            } // null would never be returned, since user can never choose outside the scope of the menu.
+            // it is beeing handled in user-interface.
         }
     }
 
-    public String sortSuperheroList(int choise1, int choise2){
+    public String sortedSuperheroList() {
+        int count = 1;
+        StringBuilder sb = new StringBuilder();
+
+        for (Superhero superhero : superheroList) {
+            sb.append(count++)
+                    .append(": ")
+                    .append(superhero.getName())
+                    .append(", ")
+                    .append(superhero.getRealName())
+                    .append(", ")
+                    .append(superhero.getSuperpower())
+                    .append(", ")
+                    .append(superhero.getYearCreated())
+                    .append(", ")
+                    .append(superhero.getIsHuman())
+                    .append(", ")
+                    .append(superhero.getStrength())
+                    .append("\n");
+        }
+        return sb.toString();
+    }
+
+    public boolean sortSuperheroList(int choise1, int choise2) {
 
         Comparator primaryChoise = attributeComparator(choise1);
         Comparator secondaryChoise = attributeComparator(choise2);
 
-        if (primaryChoise == null || secondaryChoise == null){
-            return "null";
+        if (primaryChoise == null || secondaryChoise == null) {
+            return false;
 
         } else {
             Collections.sort(superheroList, primaryChoise.thenComparing(secondaryChoise));
-
-            StringBuilder sb = new StringBuilder();
-            int count = 1;
-            for (Superhero superhero : superheroList) {
-                sb.append(count++)
-                        .append(": ")
-                        .append(superhero.getName())
-                        .append(", ")
-                        .append(superhero.getRealName())
-                        .append(", ")
-                        .append(superhero.getSuperpower())
-                        .append(", ")
-                        .append(superhero.getYearCreated())
-                        .append(", ")
-                        .append(superhero.getIsHuman())
-                        .append(", ")
-                        .append(superhero.getStrength())
-                        .append("\n");
-            }
-            return "\nList has been sorted\n" + sb;
+            return true;
         }
     }
 

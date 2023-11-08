@@ -7,6 +7,7 @@ public class Controller {
     Database database = new Database();
 
     public Controller() {
+        database.loadDatabase();
     }
 
     public void createSuperhero(String name, String realName, String superPower,
@@ -36,14 +37,18 @@ public class Controller {
         return database.deleteSuperhero(userChoise);
     }
 
-    public String sortSuperheroList(int primaryChoise, int secondaryChoise) {
+    public boolean sortSuperheroList(int primaryChoise, int secondaryChoise) {
        return database.sortSuperheroList(primaryChoise, secondaryChoise);
+    }
+
+    public String sortedSuperheroList() {
+        return database.sortedSuperheroList();
     }
 
     public ArrayList<Object> getChosenSuperheroToEdit(int userChoise) {
         return database.getChosenSuperheroToEdit(userChoise); //Hjælpe metode til deleteSuperhero()
     }
-    public ArrayList<Superhero> getSuperheroList() {
+    public ArrayList<Superhero> getSuperheroList(){
         return database.getSuperheroList();
     }
 }
